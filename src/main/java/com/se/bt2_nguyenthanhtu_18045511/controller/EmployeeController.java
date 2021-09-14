@@ -27,7 +27,17 @@ public class EmployeeController {
 
     @PostMapping("/employees")
     public Employee addNewEmployee(@RequestBody Employee employee){
+        employee.setId(Long.valueOf(0));
         employeeService.saveEmployee(employee);
         return employee;
     }
+
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee employee){
+
+        employeeService.saveEmployee(employee);
+        return employee;
+    }
+
+
 }
