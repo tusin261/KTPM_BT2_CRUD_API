@@ -1,6 +1,7 @@
 package com.se.bt2_nguyenthanhtu_18045511.service;
 
 import com.se.bt2_nguyenthanhtu_18045511.entity.Employee;
+import com.se.bt2_nguyenthanhtu_18045511.error.EmployeeNotFoundException;
 import com.se.bt2_nguyenthanhtu_18045511.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,15 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findById(long id) {
+    public Employee findById(long id) throws EmployeeNotFoundException {
         Optional<Employee> rs = employeeRepository.findById(Long.valueOf(id));
-        Employee e = null;
-        if(rs.isPresent()){
-            e = rs.get();
-        }else {
-            throw new RuntimeException("Did not find");
+        //Employee e = null;
+        if(!rs.isPresent()) {
+            throw new EmployeeNotFoundException("Employee not found!");
         }
-        return e;
+        return rs.get();
     }
 
     @Override
