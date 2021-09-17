@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: production
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: sapassword
+    url: jdbc:mysql://localhost:3306/employee_db_dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+welcome:
+  message:'Welcome to dev'
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: sapassword
+    url: jdbc:mysql://localhost:3306/employee_db
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+welcome:
+  message:'Welcome to production'
